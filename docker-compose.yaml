@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  express:
+    build: . 
+    ports: 
+      - '8080:3000'
+    volumes:
+      - /var/log:/opt/app/var/log
