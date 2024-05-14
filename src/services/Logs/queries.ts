@@ -6,14 +6,18 @@ import {
 } from '../../shared/constants';
 
 export function getLogsFromFile(filePath: string, lines?: string | number, keyword?: string): string {
-    const numberOfLines = Math.min((lines ? (typeof lines === 'string' ? parseInt(lines) : lines) : DEFAULT_NUMBER_OF_LINES), MAX_NUMBER_OF_LINES);
-    console.log(numberOfLines)
+    let numberOfLines = Math.min(
+        (lines ? (typeof lines === 'string' ? parseInt(lines) : lines) : DEFAULT_NUMBER_OF_LINES),
+        MAX_NUMBER_OF_LINES
+    );
+    //Handling edge case of user inputing a non number in this field
+    numberOfLines = isNaN(numberOfLines) ? DEFAULT_NUMBER_OF_LINES : numberOfLines;
     // Open file for reading
     const fileDescriptor = fs.openSync(filePath, 'r');
     const stats = fs.fstatSync(fileDescriptor);
-    const bufferSize = 64 * 1024; // 64 KB buffer size (adjust as needed)
+    const bufferSize = 64 * 1024; // 64 KB buffer size (adjust as needed, but this is working for now)
     let buffer = Buffer.alloc(bufferSize);
-
+    
     // Start reading from the end of the file
     let logs;
     let linesCount = 0;

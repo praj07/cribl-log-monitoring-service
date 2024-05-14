@@ -8,16 +8,14 @@ export async function getFilesFromLog(req: IGetLogs): Promise<IGetLogsResponse> 
     const { lines, keyword } = req.query;
     const fileName  = req.params?.fileName ?? 'default' ;
 
-    console.log('keyword', keyword);
 
     const filePath = GENERATE_FILE_PATH(fileName) ;
 
     // Check if the file exists
     if (!fs.existsSync(filePath)) {
-        console.log(filePath)
         return {
             isSuccessful: false,
-            error: 'File not found',
+            error: `File not found: ${fileName}`,
         };
     }
 
