@@ -5,11 +5,11 @@ The monitoring service was built on Nodejs using express as the backend framewor
 
 ## Set Up
 ### Remote Testing
-Request: GET /logs/file/:fileName?lines=[number]&keyword=[string]
-Example Request: http://ec2-35-183-118-137.ca-central-1.compute.amazonaws.com:8080/logs/file/logfile?lines=26&keyword=error
+Request: `GET /logs/file/:fileName?lines=[number]&keyword=[string]`
+Example Request: `http://ec2-35-183-118-137.ca-central-1.compute.amazonaws.com:8080/logs/file/logfile?lines=26&keyword=error`
 
-The application is currently live and running on ec2-35-183-118-137.ca-central-1.compute.amazonaws.com. Simply going to the endpoint in browser will allow you to see the response. The params for this Endpoint are `fileName`, which will let the application know which file to look at and thus cannot be undefined. The query parameters for this endpoint are `lines` and `keyword`, both of which are optional. Lines determines the how many log entries to return from the file and keyword will filter the results to only contain entries that contain the keyword.
-Currently accessible files on ec2-35-183-118-137.ca-central-1.compute.amazonaws.com are `logfileshort` and `logfile`.
+The application is currently live and running on `ec2-35-183-118-137.ca-central-1.compute.amazonaws.com`. Simply going to the endpoint in browser will allow you to see the response. The params for this Endpoint are `fileName`, which will let the application know which file to look at and thus cannot be undefined. The query parameters for this endpoint are `lines` and `keyword`, both of which are optional. Lines determines the how many log entries to return from the file and keyword will filter the results to only contain entries that contain the keyword.
+Currently accessible files on `ec2-35-183-118-137.ca-central-1.compute.amazonaws.com` are `logfileshort` and `logfile`.
 logfileshort is 1Mb in size and logfile is 1Gb in size.
 `logfileshort` has spoof entries with keywords `debug`, `error`, and `info` 
 
