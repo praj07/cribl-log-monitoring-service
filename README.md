@@ -20,10 +20,15 @@ To add more logfiles to test against, create a local folder at the level called 
 ### Running in docker
 Since this application was developed to be running in remote servers, it makes sense to containerize it. To run the docker instance, run `docker compose up -d` in your command line or terminal, and the application should deploy itself. Additionally, docker has been configured in such a way that `/var/log` will be mounted to the docker container, meaning even after the docker container is deployed it can read new logs coming to the server. This also makes testing easier as even after the container is live it will continue to function on new data.
 
-##Limitations and Improvements
-  [ ] 1. File extensions
-     By default, a lot of unix based log files have no extensions and are just raw text files that can be read and written to, so a result this implementation just searches the raw files within the `var/log` without any extensions since adding a `.` to the fileName parameter would cause issues. A solution to fix this would be to add in an extension parameter to the query so that it can be appended to the filepath variable when we look for the file to read in.
-  [ ] 2. Security
-    Right now anybody with the url to the server can access it and look at the logs that are present. For the purpose of demonstration and testing this is allowed since the IPs to whitelist server access for is unknown (as well as the ec2 server being a dummy just for this demonstration). In the future a secret/private key communication or authentification flow might need to be implemented using something like JWTs to ensure that the user accessing the logs are have the appropriate permissions to see them. Another avenue of security would also be the only allow inbound/outbound traffic on the API's port to those IPs that have access (or using a VPN of some sort). A final solution could also be to use a web application to add an interface layer between the user and API and make it so that only that client can access the logs (provided again that the user has the appropriate credentials)
+## Limitations and Improvements
+- [ ] 1. File extensions
+    - By default, a lot of unix based log files have no extensions and are just raw text files that can be read and written to, so a result this implementation just searches the raw files within the `var/log` without any extensions since adding a `.` to the fileName parameter would cause issues.
+    -  A solution to fix this would be to add in an extension parameter to the query so that it can be appended to the filepath variable when we look for the file to read in.
+
+- [ ] 2. Security
+    - Right now anybody with the url to the server can access it and look at the logs that are present. For the purpose of demonstration and testing this is allowed since the IPs to whitelist server access for is unknown (as well as the ec2 server being a dummy just for this demonstration).
+    - In the future a secret/private key communication or authentification flow might need to be implemented using something like JWTs to ensure that the user accessing the logs are have the appropriate permissions to see them.
+    - Another avenue of security would also be the only allow inbound/outbound traffic on the API's port to those IPs that have access (or using a VPN of some sort).
+    - A final solution could also be to use a web application to add an interface layer between the user and API and make it so that only that client can access the logs (provided again that the user has the appropriate credentials)
 
 
